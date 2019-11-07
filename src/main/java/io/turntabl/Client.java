@@ -1,14 +1,24 @@
 package io.turntabl;
 
-import java.io.Serializable;
 import java.util.Random;
 
-public class Client implements Serializable {
+public class Client{
     public String name;
     private Integer id;
     private String address;
     private String phoneNumber;
     private String email;
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
     public Client(String name, String address, String phoneNumber, String email) {
         this.name = name;
