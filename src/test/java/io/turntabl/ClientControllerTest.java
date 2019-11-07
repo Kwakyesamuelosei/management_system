@@ -27,7 +27,7 @@ public class ClientControllerTest {
         ClientController clientController = new ClientController();
         Map<String,String> updateData = new HashMap<>();
         updateData.put("name","");
-        updateData.put("address","Legon");
+        updateData.put("address","Kasoa");
         updateData.put("phoneNumber","055555555");
         updateData.put("email","yaaMaame@gmail.com");
         updateData.put("id","738811");
@@ -39,6 +39,4 @@ public class ClientControllerTest {
 
         assertEquals(expected,actual);
     }
-
-
 }

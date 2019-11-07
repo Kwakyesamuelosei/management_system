@@ -141,7 +141,6 @@ public class ClientController {
         List<Client> newclients = clientList.stream()
                 .filter(client1 -> client1.getID() != clientId)
                 .collect(Collectors.toList());
-        System.out.println("New List: " + newclients);
         try {
             if (filename.exists()){
                 filename.delete();
