@@ -1,15 +1,13 @@
 package io.turntabl;
 
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
+    private static ClientController clientController = new ClientController();
 
     public static void mainMenu() {
 
@@ -46,8 +44,6 @@ public class Main {
         System.out.println();
 
         Client client = new Client(name,address,telephone,email);
-        System.out.println("Client Id:"+ client.getID());
-        ClientController clientController = new ClientController();
 
         Map<String, String> response =  clientController.addNewClient(client);
         if (response.get("code").equals("00")){
@@ -59,23 +55,24 @@ public class Main {
 
     }
 
-    public static Integer optionToEnterClientId() {
+    public static String optionToEnterClientId() {
         System.out.println();
         System.out.println("Enter the Client's ID to select client");
-        return scanner.nextInt();
+        return scanner.nextLine();
 
     }
 
-    public static Character optionToDeleteClient() {
+    public static void optionToDeleteClient() {
         System.out.println();
         System.out.println("Are you sure you want to delete client? y/n:  ");
         System.out.println();
-        return scanner.next().charAt(0);
+        System.out.println("Enter '1' to confirm  ");
+        System.out.println();
+        System.out.println("Enter '2' to decline" );
 
     }
 
-    public static Integer optionToUpdateClient() {
-        System.out.println("----------------Welcome to Turntabl Client Management System(TCMS)----------");
+    public static void optionToUpdateClient() {
         System.out.println();
         System.out.println("Enter '1' to change Name");
         System.out.println();
@@ -86,7 +83,7 @@ public class Main {
         System.out.println("Enter '4' to change Email Address");
         System.out.println();
         System.out.println("Enter '5' to go to main menu");
-        return scanner.nextInt();
+
     }
 
     public static void optionToDeleteUpdate() {
@@ -97,11 +94,6 @@ public class Main {
 
     }
 
-    public static void optionToGoToMenu() {
-        System.out.println();
-        System.out.println("Enter '0' to go to the main menu");
-
-    }
 
     public static String optionToChangeClientName() {
         System.out.println();
@@ -137,7 +129,6 @@ public class Main {
     public static List<Client> searchClient(){
         String searchClient = menuToEnterClientName();
         String lowerName = searchClient.toLowerCase();
-        ClientController clientController = new ClientController();
         List<Client> clients = clientController.getAllClients();
         return clients.stream().filter(c -> c.getName().toLowerCase().startsWith(lowerName)).collect(Collectors.toList());
     }
@@ -152,7 +143,9 @@ public class Main {
                     System.out.println("Input not valid option");
                 }
                 else if(actualResponse == 2){
-
+                    List<Client> clientDetails = clientController.getAllClients();
+                    System.out.println(clientDetails);
+                    mainMenu();
                 }
                 else if(actualResponse == 3){
                     List<Client> clientName = searchClient();
@@ -163,27 +156,45 @@ public class Main {
                         try{
                             int actualUpdateOption = Integer.parseInt(updateOption);
                             if(actualUpdateOption == 1){
-                                try {
-                                    char answer = Character.toLowerCase(optionToDeleteClient());
-                                    if(answer == 'y') {
-                                        System.out.println("Client deleted successfully!!");
-                                        mainMenu();
-                                        break;
-                                    }
-                                    else if(answer == 'n'){
-                                        System.out.println("Client not deleted!!");
-                                        mainMenu();
-                                        break;
-                                    }
-                                }catch(InputMismatchException exception){
-                                    System.out.println("Please enter 'y' for yes or 'n' for no");
-
+                                optionToDeleteClient();
+                                String deleteOption = scanner.nextLine();
+                                int actualDeleteOption = Integer.parseInt(deleteOption);
+                                if(actualDeleteOption == 1) {
+                                    System.out.println("Client deleted successfully!!");
+                                    mainMenu();
+                                    break;
                                 }
-
-
+                                else if(actualDeleteOption == 0){
+                                    System.out.println("Client not deleted!!");
+                                    mainMenu();
+                                    break;
+                                }
+                                else{
+                                    System.out.println("Enter a valid option");
+                                }
                             }
                             else if(actualUpdateOption == 2){
+                                String clientId = optionToEnterClientId();
                                 optionToUpdateClient();
+                                String updateOptionResponse = scanner.nextLine();
+                                int updateOptionResponse1 = Integer.parseInt(updateOptionResponse);
+                                if(updateOptionResponse1 == 1){
+                                    String newClientName = optionToChangeClientName();
+                                    Map<String, String> mapOfNames = new HashMap<>();
+                                    mapOfNames.put("name", newClientName);
+                                    mapOfNames.put("address", "");
+                                    mapOfNames.put("phoneNumber", "");
+                                    mapOfNames.put("email", "");
+                                    mapOfNames.put("id", clientId);
+                                    Map<String, String> mapOfErrorCodes = clientController.updateClient(mapOfNames);
+                                    if (mapOfErrorCodes.get("code").equals("00")){
+                                         System.out.println(mapOfErrorCodes.get("msg"));
+                                    }else{
+                                        System.out.println(mapOfErrorCodes.get("msg"));
+                                    }
+                                }
+                                mainMenu();
+                                break;
 
                             }
                             else if(actualUpdateOption > 2){
@@ -199,26 +210,7 @@ public class Main {
                 else if(actualResponse == 4){
                     break;
                 }
-                else if(actualResponse == 1) {
-                    optionToAdd();
-                    optionToGoToMenu();
-                    while (true) {
-                        String exit = scanner.nextLine();
-                        try {
-                            int actualExit = Integer.parseInt(exit);
-                            if (actualExit == 0) {
-                                mainMenu();
-                                break;
-                            } else if (actualExit > 0) {
-                                System.out.println("Input not a valid option");
-                            }
-                        } catch (NumberFormatException exception) {
-                            System.out.println("Input not number");
 
-                        }
-
-                    }
-                }
             }
             catch(NumberFormatException exception){
                 System.out.println("Input not number");
