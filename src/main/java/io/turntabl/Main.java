@@ -1,6 +1,9 @@
 package io.turntabl;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -37,6 +40,10 @@ public class Main {
         System.out.println("Enter Client's email: ");
         String email  = scanner.nextLine();
         System.out.println();
+
+        Client client = new Client(name,address,telephone,email);
+        System.out.println("Client Id:"+ client.getID());
+        ClientController clientController = new ClientController();
         System.out. println("Client with the following details added successfully");
         System.out.println("Client's name: " + name);
         System.out.println("Client's Address: " + address);
@@ -44,7 +51,21 @@ public class Main {
         System.out.println("Client's Email: " + email);
         System.out.println();
 
+        Map<String,String> response =  clientController.addNewClient(client);
+        if (response.get("code").equals("00")){
+            System.out.println(response.get("msg"));
+        }else{
+            System.out.println("Oops!!!, something went wrong, try again later");
+        }
 
+
+
+    }
+
+    public static void input2(){
+        ClientController clientController = new ClientController();
+        List<Client> clients = clientController.getAllClients();
+        System.out.println("View All Clients: "+ clients);
     }
     public static void input3(){
         System.out.println("----------------Welcome to Turntabl Client Management System(TCMS)--------------");
@@ -64,6 +85,8 @@ public class Main {
                     System.out.println("Please enter a valid option ");
                 } else if (actualResponse == 1) {
                     input1();
+                } else if (actualResponse == 2) {
+                    input2();
                 } else if(actualResponse == 3){
                     input3();
                 }
@@ -77,10 +100,4 @@ public class Main {
         }
 
         }
-
-
-
-
-
-
     }
