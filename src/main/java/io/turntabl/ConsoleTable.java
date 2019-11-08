@@ -44,7 +44,7 @@ public class ConsoleTable {
                 maxWidths = new int[cells.length];
             }
             if (cells.length != maxWidths.length) {
-                throw new IllegalArgumentException("Number of row-cells and headers should be consistent");
+                throw new IllegalArgumentException("Number of row-cells and headers should be always consistent");
             }
             for (int i = 0; i < cells.length; i++) {
                 maxWidths[i] = Math.max(maxWidths[i], cells[i].length());
