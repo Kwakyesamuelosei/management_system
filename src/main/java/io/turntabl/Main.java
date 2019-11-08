@@ -1,4 +1,4 @@
-package main.java.io.turntabl;
+package io.turntabl;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,19 +10,19 @@ public class Main {
     private static ClientController clientController = new ClientController();
 
     public static void mainMenu() {
-        System.out.println("\033[0;94m  ************************************************************************************ \033[0m");
+        System.out.println("\033[1;34m  \t ************************************************************************************ \033[0m");
         System.out.println();
-        System.out.println("* \t \t \033[0;92m Welcome to Turntabl Client Management System(TCMS) \033[0m");
+        System.out.println("\t \t \t  \t \033[0;93m Welcome to Turntabl Client Management System(TCMS) \033[0m");
         System.out.println();
-        System.out.println("\033[0;94m ************************************************************************************ \033[0m");
+        System.out.println("\033[1;34m \t ************************************************************************************** \033[0m");
         System.out.println();
-        System.out.println("\033[0;93m 1. To add new client details, enter '1' ");
+        System.out.println("\033[1;34m1.\033[0m To add new client details, enter '1' ");
         System.out.println();
-        System.out.println("2. To view all clients, enter '2' ");
+        System.out.println("\033[1;34m2.\033[0m To view all clients, enter '2' ");
         System.out.println();
-        System.out.println("3. To search, update and delete a client, enter '3' ");
+        System.out.println("\033[1;34m3.\033[0m To search, update and delete a client, enter '3' ");
         System.out.println();
-        System.out.println("4. To exit, enter '4'\033[0m");
+        System.out.println("\033[1;34m4.\033[0m To exit, enter '4'");
         System.out.println();
 
     }
@@ -32,11 +32,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\033[0;94m *************************************************************** \033[0m");
         System.out.println();
-        System.out.println("---------------- \033[0;92m  TCMS Add new Client Menu \033[0m    --------------");
+        System.out.println("---------------- \033[0;93m  TCMS Add new Client Menu \033[0m    --------------");
         System.out.println();
         System.out.println("\033[0;94m *************************************************************** \033[0m");
         System.out.println();
-        System.out.println("\033[0;93m Enter Client Name: ");
+        System.out.println("Enter Client Name: ");
         String name  = scanner.nextLine();
         System.out.println();
         System.out.println("Enter Client's Address: ");
@@ -45,7 +45,7 @@ public class Main {
         System.out.println("Enter Client's Telephone: ");
         String telephone = scanner.nextLine();
         System.out.println();
-        System.out.println("Enter Client's email: \033[0m");
+        System.out.println("Enter Client's email:");
         String email  = scanner.nextLine();
         System.out.println();
 
@@ -70,38 +70,39 @@ public class Main {
 
     public static void optionToDeleteClient() {
         System.out.println();
-        System.out.println("Are you sure you want to delete client? y/n:  ");
+        System.out.println("\033[0;93mAre you sure you want to delete client? y/n: \033[0m ");
         System.out.println();
-        System.out.println("Enter '1' to confirm  ");
+        System.out.println("\033[1;34m1.\033[0m Enter '1' to confirm  ");
         System.out.println();
-        System.out.println("Enter '2' to decline" );
+        System.out.println("\033[1;34m2.\033[0m Enter '2' to decline" );
+        System.out.println();
 
     }
 
     public static void optionToUpdateClient() {
-        System.out.println("\033[0;94m *************************************************************** \033[0m");
+        System.out.println("\033[1;34m *************************************************************** \033[0m");
         System.out.println();
-        System.out.println("---------------- \033[0;92m  TCMS Update Client's detsils Menu \033[0m    --------------");
+        System.out.println("---------------- \033[0;93m  TCMS Update Client's detsils Menu \033[0m    --------------");
         System.out.println();
-        System.out.println("\033[0;94m *************************************************************** \033[0m");
+        System.out.println("\033[1;34m *************************************************************** \033[0m");
         System.out.println();
-        System.out.println("Enter '1' to change Name");
+        System.out.println("\033[1;34m1.\033[0m Enter '1' to change Name");
         System.out.println();
-        System.out.println("Enter '2' to change Address");
+        System.out.println("\033[1;34m2.\033[0m Enter '2' to change Address");
         System.out.println();
-        System.out.println("Enter '3' to change Telephone number");
+        System.out.println("\033[1;34m3.\033[0m Enter '3' to change Telephone number");
         System.out.println();
-        System.out.println("Enter '4' to change Email Address");
+        System.out.println("\033[1;34m4.\033[0m Enter '4' to change Email Address");
         System.out.println();
-        System.out.println("Enter '5' to go to main menu");
+        System.out.println("\033[1;34m5.\033[0m Enter '5' to go to main menu");
 
     }
 
     public static void optionToDeleteUpdate() {
         System.out.println();
-        System.out.println("Enter '1' to delete client");
+        System.out.println("\033[1;34m1.\033[0m Enter '1' to delete client");
         System.out.println();
-        System.out.println("Enter '2' to update client's details");
+        System.out.println("\033[1;34m2.\033[0m Enter '2' to update client's details");
 
     }
 
@@ -155,58 +156,66 @@ public class Main {
             String response = scanner.nextLine();
             try {
                 int actualResponse = Integer.parseInt(response);
-                if(actualResponse < 1){
-                    System.out.println("\033[0;91m Input not valid option\033[0m");
-                }
-                else if(actualResponse == 2){
+                if (actualResponse < 1 || actualResponse > 4) {
+                    System.out.println("\033[1;31m Input not valid option!! \033[0m");
+                } else if (actualResponse == 1) {
+                    System.out.println();
+                    optionToAdd();
+                    mainMenu();
+                } else if (actualResponse == 2) {
+                    mainMenu();
+                    System.out.println();
                     List<Client> clientDetails = clientController.getAllClients();
                     System.out.println(clientDetails);
-                    mainMenu();
-                }
-                else if(actualResponse == 3){
+
+                } else if (actualResponse == 3) {
                     List<Client> clientName = searchClient();
-                    System.out.println(clientName);
-                    optionToDeleteUpdate();
-                    while (true) {
-                        String updateOption = scanner.nextLine();
-                        try{
-                            int actualUpdateOption = Integer.parseInt(updateOption);
-                            if(actualUpdateOption == 1){
+                    if (clientName.size() == 0) {
+                        System.out.println("\033[1;31m Name Entered does not exist in Client List \033[0m");
+                        System.out.println();
+                        mainMenu();
+                    } else {
+                        System.out.println(clientName);
+                        optionToDeleteUpdate();
+                         while (true) {
+                                System.out.println();
+                                 String updateOption = scanner.nextLine();
+                            try {
+                                int actualUpdateOption = Integer.parseInt(updateOption);
+                                if (actualUpdateOption == 1) {
                                 optionToDeleteClient();
                                 String deleteOption = scanner.nextLine();
                                 int actualDeleteOption = Integer.parseInt(deleteOption);
-                                if(actualDeleteOption == 1) {
+                                if (actualDeleteOption == 1) {
                                     String clientId = optionToEnterClientId();
                                     Map<String, String> errorCodes = clientController.removeClient(clientId);
-                                    if (errorCodes.get("code").equals("00")){
+                                    mainMenu();
+                                    if (errorCodes.get("code").equals("00")) {
                                         System.out.println();
-                                        System.out.println("\033[0;92m"+ errorCodes.get("msg") + "\033[0m");
+                                        System.out.println("\033[0;92m" + errorCodes.get("msg") + "\033[0m");
                                         System.out.println();
-                                    }else{
+                                    } else {
                                         System.out.println(errorCodes.get("msg"));
                                     }
-                                    mainMenu();
                                     break;
-                                }
-                                else if(actualDeleteOption == 0){
+                                } else if (actualDeleteOption == 0) {
+                                    mainMenu();
                                     System.out.println();
                                     System.out.println("\033[0;92mAborted!!\033[0m");
                                     System.out.println();
-                                    mainMenu();
                                     break;
-                                }
-                                else{
+                                } else {
                                     System.out.println();
-                                    System.out.println("\033[0;91m Enter a valid option\033[0m");
+                                    System.out.println("\033[1;31m Enter a valid option\033[0m");
                                     System.out.println();
                                 }
-                            }
-                            else if(actualUpdateOption == 2){
+                            } else if (actualUpdateOption == 2) {
                                 String clientId = optionToEnterClientId();
                                 optionToUpdateClient();
                                 String updateOptionResponse = scanner.nextLine();
+                                mainMenu();
                                 int updateOptionResponse1 = Integer.parseInt(updateOptionResponse);
-                                if(updateOptionResponse1 == 1){
+                                if (updateOptionResponse1 == 1) {
                                     String newClientName = optionToChangeClientName();
                                     Map<String, String> mapOfNames = new HashMap<>();
                                     mapOfNames.put("name", newClientName);
@@ -215,13 +224,14 @@ public class Main {
                                     mapOfNames.put("email", "");
                                     mapOfNames.put("id", clientId);
                                     Map<String, String> mapOfErrorCodes = clientController.updateClient(mapOfNames);
-                                    if (mapOfErrorCodes.get("code").equals("00")){
-                                         System.out.println(mapOfErrorCodes.get("msg"));
-                                    }else{
+                                    if (mapOfErrorCodes.get("code").equals("00")) {
+                                        System.out.println();
+                                        System.out.println("\033[0;92m" + mapOfErrorCodes.get("msg") + "\033[0m");
+                                    } else {
+                                        System.out.println();
                                         System.out.println(mapOfErrorCodes.get("msg"));
                                     }
-                                }
-                                else if(updateOptionResponse1 == 2){
+                                } else if (updateOptionResponse1 == 2) {
                                     String newClientAddress = optionToChangeClientAddress();
                                     Map<String, String> mapOfNames = new HashMap<>();
                                     mapOfNames.put("name", "");
@@ -230,13 +240,14 @@ public class Main {
                                     mapOfNames.put("email", "");
                                     mapOfNames.put("id", clientId);
                                     Map<String, String> mapOfErrorCodes = clientController.updateClient(mapOfNames);
-                                    if (mapOfErrorCodes.get("code").equals("00")){
-                                        System.out.println(mapOfErrorCodes.get("msg"));
-                                    }else{
+                                    if (mapOfErrorCodes.get("code").equals("00")) {
+                                        System.out.println();
+                                        System.out.println("\033[0;92m" + mapOfErrorCodes.get("msg") + "\033[0m");
+                                    } else {
+                                        System.out.println();
                                         System.out.println(mapOfErrorCodes.get("msg"));
                                     }
-                                }
-                                else if(updateOptionResponse1 == 3){
+                                } else if (updateOptionResponse1 == 3) {
                                     String newClientTelephone = optionToChangeClientTelephone();
                                     Map<String, String> mapOfNames = new HashMap<>();
                                     mapOfNames.put("name", "");
@@ -245,13 +256,14 @@ public class Main {
                                     mapOfNames.put("email", "");
                                     mapOfNames.put("id", clientId);
                                     Map<String, String> mapOfErrorCodes = clientController.updateClient(mapOfNames);
-                                    if (mapOfErrorCodes.get("code").equals("00")){
-                                        System.out.println(mapOfErrorCodes.get("msg"));
-                                    }else{
+                                    if (mapOfErrorCodes.get("code").equals("00")) {
+                                        System.out.println();
+                                        System.out.println("\033[0;92m" + mapOfErrorCodes.get("msg") + "\033[0m");
+                                    } else {
+                                        System.out.println();
                                         System.out.println(mapOfErrorCodes.get("msg"));
                                     }
-                                }
-                                else if(updateOptionResponse1 == 4){
+                                } else if (updateOptionResponse1 == 4) {
                                     String newClientEmail = optionToChangeClientEmail();
                                     Map<String, String> mapOfNames = new HashMap<>();
                                     mapOfNames.put("name", "");
@@ -260,33 +272,39 @@ public class Main {
                                     mapOfNames.put("email", newClientEmail);
                                     mapOfNames.put("id", clientId);
                                     Map<String, String> mapOfErrorCodes = clientController.updateClient(mapOfNames);
-                                    if (mapOfErrorCodes.get("code").equals("00")){
-                                        System.out.println(mapOfErrorCodes.get("msg"));
-                                    }else{
-                                        System.out.println(mapOfErrorCodes.get("msg"));
+                                    if (mapOfErrorCodes.get("code").equals("00")) {
+                                        System.out.println();
+                                        System.out.println("\033[0;92m" + mapOfErrorCodes.get("msg") + "\033[0m");
+                                    } else {
+                                        System.out.println();
+                                        System.out.println("\033[1;31" + mapOfErrorCodes.get("msg") + "\033[0m");
                                     }
                                 }
-                                mainMenu();
                                 break;
 
-                            }
-                            else if(actualUpdateOption > 2){
-                                System.out.println("\033[0;91mPlease enter a valid option!\033[0m ");
+                            } else if (actualUpdateOption > 2) {
+                                System.out.println();
+                                System.out.println("\033[1;31mPlease enter a valid option!\033[0m ");
                             }
 
-                        }catch(NumberFormatException exception){
-                            System.out.println("\033[0;91mInput not number\033[0m");
+                        } catch (NumberFormatException exception) {
+                            System.out.println();
+                            System.out.println("\033[1;31mInput not number\033[0m");
                         }
                     }
 
                 }
+            }
                 else if(actualResponse == 4){
                     break;
                 }
 
+
             }
             catch(NumberFormatException exception){
-                System.out.println("\033[0;91mInput not number\033[0m");
+                System.out.println();
+                System.out.println("\033[1;31mInput not number\033[0m");
+
 
             }
 
@@ -296,3 +314,4 @@ public class Main {
     }
 
 }
+
