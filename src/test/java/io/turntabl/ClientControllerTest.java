@@ -28,7 +28,7 @@ public class ClientControllerTest {
         updateData.put("address","");
         updateData.put("phoneNumber","055555555");
         updateData.put("email","maxwell@gmail.com");
-        updateData.put("id","590601");
+        updateData.put("id","540602");
 
         Map<String,String> actual = clientController.updateClient(updateData);
         Map<String,String> expected = new HashMap<>();
