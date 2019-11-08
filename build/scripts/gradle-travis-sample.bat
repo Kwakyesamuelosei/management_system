@@ -66,7 +66,7 @@ set CMD_LINE_ARGS=%*
 set CLASSPATH=%APP_HOME%\lib\gradle-travis-sample-1.0-SNAPSHOT.jar;%APP_HOME%\lib\gson-2.3.jar
 
 @rem Execute gradle-travis-sample
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_TRAVIS_SAMPLE_OPTS%  -classpath "%CLASSPATH%" io.turntabl.TCMS %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_TRAVIS_SAMPLE_OPTS%  -classpath "%CLASSPATH%" io.turntabl.Main %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell
