@@ -19,7 +19,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'io.turntabl.TCMS'
+    mainClassName = 'io.turntabl.Main'
 }
 
 //this will build a start script in
@@ -33,4 +33,11 @@ tasks.startScripts {
 //put your package-qualified main class name here
 application {
     mainClassName = 'io.turntabl.TCMS'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'io.turntabl.Main'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
