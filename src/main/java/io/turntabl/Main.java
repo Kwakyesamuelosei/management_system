@@ -166,7 +166,7 @@ public class Main {
                     mainMenu();
                     System.out.println();
                     List<Client> clientDetails = clientController.getAllClients();
-                    System.out.println(clientDetails);
+                    clientController.printFormat(clientDetails);
 
                 } else if (actualResponse == 3) {
                     List<Client> clientName = searchClient();

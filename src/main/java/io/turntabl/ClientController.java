@@ -178,4 +178,15 @@ public class ClientController {
         }
         return response;
     }
+
+    public void printFormat(List<Client> clientList){
+
+        ConsoleTable st = new ConsoleTable();
+        st.setShowVerticalLines(false);//if false (default) then no vertical lines are shown
+        st.setHeaders("Client ID", "Name", "Address","Telephone Number","Email");
+        for (Client client: clientList){
+            st.addRow(String.valueOf(client.getID()), client.getName(), client.getAddress(),client.getPhoneNumber(),client.getEmail());
+        }
+        st.print();
+    }
 }
