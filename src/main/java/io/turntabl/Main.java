@@ -103,6 +103,8 @@ public class Main {
         System.out.println("\033[1;34m1.\033[0m Enter '1' to delete client");
         System.out.println();
         System.out.println("\033[1;34m2.\033[0m Enter '2' to update client's details");
+        System.out.println();
+        System.out.println("\033[1;34m3.\033[0m Enter '3' to go to main menu.");
 
     }
 
@@ -175,7 +177,7 @@ public class Main {
                         System.out.println();
                         mainMenu();
                     } else {
-                        System.out.println(clientName);
+                        clientController.printFormat(clientName);
                         optionToDeleteUpdate();
                          while (true) {
                                 System.out.println();
@@ -282,7 +284,11 @@ public class Main {
                                 }
                                 break;
 
-                            } else if (actualUpdateOption > 2) {
+                            } else if(actualUpdateOption == 3){
+                                    mainMenu();
+                                    break;
+                                }
+                                else if (actualUpdateOption > 2) {
                                 System.out.println();
                                 System.out.println("\033[1;31mPlease enter a valid option!\033[0m ");
                             }

@@ -178,6 +178,17 @@ public class ClientController {
         }
         return response;
     }
+    public Optional<String> searchClient(String clientName) {
+        String lowerCaseName = clientName.toLowerCase();
+        List<Client> clients = this.getAllClients();
+        Optional<String> searchClient = clients.stream()
+                .filter(c -> c.getName().toLowerCase()
+                .startsWith(lowerCaseName))
+                .map(Client::getEmail)
+                .findFirst();
+        return searchClient;
+
+    }
 
     public void printFormat(List<Client> clientList){
 
