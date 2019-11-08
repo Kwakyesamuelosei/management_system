@@ -1,4 +1,4 @@
-package io.turntabl;
+package main.java.io.turntabl;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

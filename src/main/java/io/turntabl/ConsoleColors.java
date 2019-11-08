@@ -1,4 +1,4 @@
-package io.turntabl;
+package main.java.io.turntabl;
 
 public class ConsoleColors {
     // Reset

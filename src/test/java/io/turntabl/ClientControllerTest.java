@@ -1,13 +1,12 @@
-package io.turntabl;
+package test.java.io.turntabl;
 
+import main.java.io.turntabl.ClientController;
 import org.junit.Test;
-import io.turntabl.ClientController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ClientControllerTest {
 
