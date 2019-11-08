@@ -27,8 +27,8 @@ public class Main {
 
     }
 
-    public static void optionToAdd() {
-
+    public static Map<String, String> optionToAdd() {
+        Map<String, String> clientDetails = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("\033[0;94m *************************************************************** \033[0m");
         System.out.println();
@@ -37,19 +37,27 @@ public class Main {
         System.out.println("\033[0;94m *************************************************************** \033[0m");
         System.out.println();
         System.out.println("Enter Client Name: ");
-        String name  = scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println();
         System.out.println("Enter Client's Address: ");
-        String address  = scanner.nextLine();
+        String address = scanner.nextLine();
         System.out.println();
         System.out.println("Enter Client's Telephone: ");
         String telephone = scanner.nextLine();
         System.out.println();
         System.out.println("Enter Client's email:");
-        String email  = scanner.nextLine();
+        String email = scanner.nextLine();
         System.out.println();
+        clientDetails.put("name", name);
+        clientDetails.put("address", address);
+        clientDetails.put("telephone", telephone);
+        clientDetails.put("email", email);
 
-        Client client = new Client(name,address,telephone,email);
+        return clientDetails;
+
+    }
+
+    public static void clientAddFunction(Client client){
         System.out.println();
         Map<String, String> response =  clientController.addNewClient(client);
         if (response.get("code").equals("00")){
@@ -162,8 +170,14 @@ public class Main {
                     System.out.println("\033[1;31m Input not valid option!! \033[0m");
                 } else if (actualResponse == 1) {
                     System.out.println();
-                    optionToAdd();
+                    Map<String, String> addedClientDetails = optionToAdd();
+                    String name = addedClientDetails.get("name");
+                    String address = addedClientDetails.get("address");
+                    String telephone = addedClientDetails.get("telephone");
+                    String email = addedClientDetails.get("email");
+                    Client clientAdded = new Client(name, address, telephone, email);
                     mainMenu();
+                    clientAddFunction(clientAdded);
                 } else if (actualResponse == 2) {
                     mainMenu();
                     System.out.println();
@@ -173,9 +187,10 @@ public class Main {
                 } else if (actualResponse == 3) {
                     List<Client> clientName = searchClient();
                     if (clientName.size() == 0) {
+                        mainMenu();
                         System.out.println("\033[1;31m Name Entered does not exist in Client List \033[0m");
                         System.out.println();
-                        mainMenu();
+
                     } else {
                         clientController.printFormat(clientName);
                         optionToDeleteUpdate();

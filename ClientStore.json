@@ -12,5 +12,19 @@
     "address": "guu",
     "phoneNumber": "055555555",
     "email": "maxwell@gmail.com"
+  },
+  {
+    "name": "Kweku Manu",
+    "id": 951906,
+    "address": "Kolebu",
+    "phoneNumber": "98888",
+    "email": "fhh"
+  },
+  {
+    "name": "",
+    "id": 737547,
+    "address": "",
+    "phoneNumber": "",
+    "email": ""
   }
 ]
