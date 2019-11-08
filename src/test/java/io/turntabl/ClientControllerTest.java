@@ -28,7 +28,7 @@ public class ClientControllerTest {
         updateData.put("address","");
         updateData.put("phoneNumber","055555555");
         updateData.put("email","maxwell@gmail.com");
-        updateData.put("id","649674");
+        updateData.put("id","555966");
 
         Map<String,String> actual = clientController.updateClient(updateData);
         Map<String,String> expected = new HashMap<>();
@@ -44,7 +44,7 @@ public class ClientControllerTest {
         List<Client> clientList = clientController.getAllClients();
         List<String> actualEmails = clientList.stream().
                 map(Client::getEmail).collect(Collectors.toList());
-        List<String>  expectedEmails = Arrays.asList("doreen@gmail.com", "jhgfgfd");
+        List<String>  expectedEmails = Arrays.asList("doreen@gmail.com", "maxwell@gmail.com");
         assertEquals(expectedEmails, actualEmails);
     }
 
