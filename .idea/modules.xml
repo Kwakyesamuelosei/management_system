@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-travis-sample.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-travis-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-travis-sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-travis-sample.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-travis-sample.test.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-travis-sample.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/management_system.iml" filepath="$PROJECT_DIR$/.idea/management_system.iml" />
     </modules>
   </component>
